@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minjerribah Strategic Plan: The Winning Coalition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Earth & Sky -->
+    <!-- Application Structure Plan: This version is structured like a dynamic business plan or pitch deck to achieve "the win". The flow is designed to build excitement and confidence. 1. **Vision:** A powerful opening statement. 2. **The Opportunity:** Immediately presents the two core commercial/community projects (Sports & Film). 3. **Sand Sports Expo:** A detailed dive into the specific sports. 4. **Film Festival:** A detailed section on the film festival. 5. **AI Crew:** A new section to introduce the AI characters, adding personality. 6. **Partners for Success:** A re-balanced, holistic view of key stakeholders. 7. **Champions:** The celebrity/influencer list. 8. **The Game Plan:** A practical, phased roadmap. 9. **The Scoreboard:** A compelling business case with key metrics. This structure prioritizes the exciting, actionable elements first, framing the necessary partnerships as strengths that enable the vision. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Sports Opportunities. Goal: Inform & Excite. Viz/Method: An interactive card grid for different sports. Interaction: Hover effects. Justification: Dynamic and engaging. Library/Method: Vanilla JS & Tailwind CSS.
+        - Report Info: Film Festival Features. Goal: Inform & Excite. Viz/Method: An interactive card grid for festival features. Interaction: Hover effects. Justification: Creates balance with the sports section. Library/Method: Vanilla JS & Tailwind CSS.
+        - Report Info: AI Team Members. Goal: Inform & Engage. Viz/Method: A new character card grid. Interaction: Hover effects. Justification: Personifies the AI/tech aspect of the festival, making it more accessible and memorable. Library/Method: Vanilla JS & Tailwind CSS.
+        - Report Info: Key Stakeholders (Council, QYAC, etc.). Goal: Inform & Build Confidence. Viz/Method: A three-column "Pillars of Partnership" layout. Interaction: Static, clear text. Justification: Presents partners as a balanced, unified foundation. Library/Method: Tailwind CSS.
+        - Report Info: Phased Plan. Goal: Change & Inform. Viz/Method: Simplified horizontal timeline. Interaction: Click to highlight a phase. Justification: Intuitive and shows logical progression. Library/Method: Vanilla JS & Tailwind CSS.
+        - Report Info: Economic Case. Goal: Persuade. Viz/Method: A "Scoreboard" section with key metric cards and a funding chart. Interaction: Animated numbers. Justification: Creates a powerful, at-a-glance summary of the project's viability. Library/Method: Chart.js, Vanilla JS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .bg-primary-dark { background-color: #003366; } /* Deep Ocean Blue */
+        .text-primary-dark { color: #003366; }
+        .bg-primary-light { background-color: #e6f0ff; }
+        .border-primary-dark { border-color: #003366; }
+        .bg-accent-gold { background-color: #ffc107; } /* Gold */
+        .text-accent-gold { color: #ffc107; }
+        .bg-accent-sand { background-color: #f5eadd; } /* Light Sand */
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffc107;
+            border-bottom-color: #ffc107;
+        }
+        .feature-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .metric-card h3 {
+             transition: color 0.3s;
+        }
+        .metric-card:hover h3 {
+            color: #003366;
+        }
+        .timeline-item.active .timeline-dot {
+            background-color: #003366;
+            transform: scale(1.25);
+        }
+        .timeline-item.active .timeline-content {
+            box-shadow: 0 4px 12px rgba(0, 51, 102, 0.2);
+            border-left-color: #ffc107;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+            max-height: 50vh;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header id="header" class="bg-primary-dark text-white p-4 sticky top-0 z-50 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold">Minjerribah Strategic Plan</h1>
+            <div class="hidden md:flex space-x-6">
+                <a href="#opportunity" class="nav-link">Opportunity</a>
+                <a href="#sports" class="nav-link">Sports Expo</a>
+                <a href="#filmfestival" class="nav-link">Film Festival</a>
+                <a href="#aicrew" class="nav-link">AI Crew</a>
+                <a href="#partners" class="nav-link">Partners</a>
+                <a href="#champions" class="nav-link">Champions</a>
+                <a href="#gameplan" class="nav-link">Game Plan</a>
+                <a href="#scoreboard" class="nav-link">Scoreboard</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="vision" class="min-h-[80vh] flex items-center justify-center bg-accent-sand">
+            <div class="text-center p-8 container mx-auto">
+                <h2 class="text-4xl md:text-6xl font-extrabold text-primary-dark mb-4">The Amity Project: Global Magnet, Local Heart.</h2>
+                <p class="text-lg md:text-xl text-gray-700 max-w-3xl mx-auto mb-8">A pragmatic vision to build a world-class sports and film destination on Minjerribah, creating jobs, celebrating culture, and driving a resilient local economy.</p>
+                <a href="#opportunity" class="bg-primary-dark text-white font-bold py-3 px-8 rounded-full hover:bg-opacity-90 transition-all text-lg">See the Opportunity</a>
+            </div>
+        </section>
+
+        <section id="opportunity" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Two Magnets, One Vision</h2>
+                     <p class="text-lg text-gray-600 max-w-3xl mx-auto">This strategy is built on two synergistic, high-potential initiatives. The Sandy Sports Club provides the action and athletic content, while the Quandamooka Film Festival tells the stories, creating a powerful, self-reinforcing ecosystem for tourism and media.</p>
+                </div>
+                <div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-accent-gold">
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">The Sandy Sports Club</h3>
+                        <p class="text-gray-700">A multi-purpose sand arena and community hub designed for everything from elite Olympic training to local kids' sport, wellness retreats, and major events. It's the physical heart of the project.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg border-t-4 border-primary-dark">
+                        <h3 class="text-2xl font-bold text-primary-dark mb-4">The Quandamooka Film Festival</h3>
+                        <p class="text-gray-700">An innovative film festival that celebrates stories of all kinds—from Indigenous narratives to AI-generated art. It's the creative soul, providing a global platform for Minjerribah's voice.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="sports" class="py-20 bg-accent-sand">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">The Sand Sports Expo</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">The Sandy Sports Club will be a flexible venue capable of hosting a diverse range of high-energy, broadcast-friendly sand sports. This creates multiple revenue streams and attracts a wide demographic of athletes and fans.</p>
+                </div>
+                <div id="sports-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Sports cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="filmfestival" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">The Film Festival: A Stage for Stories</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">More than just a screening, the Quandamooka Film Festival is an accessible, innovative movement. It's designed to empower new voices, celebrate culture, and create a unique intersection of art and technology.</p>
+                </div>
+                <div id="filmfestival-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Film Festival cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="aicrew" class="py-20 bg-primary-light">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Meet the AI Film Crew</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">The "AI Director Assistant" isn't a single tool, but a collaborative team of specialized AI agents. Each character represents a core function, working together to help creators bring their stories to life.</p>
+                </div>
+                <div id="aicrew-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+                    <!-- AI Crew cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">Partners for Success</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">This project stands on three core pillars of partnership. Success requires a balanced, collaborative approach between Council, Quandamooka representatives, and the broader community and industry.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-center">
+                    <div class="p-6">
+                        <div class="text-5xl mb-4">🏛️</div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-2">Civic Partnership</h3>
+                        <p class="text-gray-600"><strong>Redland City Council</strong> is the key partner for land use, approvals, and potential seed funding. We will work within the Land Management Plan to activate the Amity Point Reserve for community and economic benefit.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-2">Cultural Partnership</h3>
+                        <p class="text-gray-600"><strong>QYAC & MMEICAC</strong> are the essential cultural authorities. We are committed to a genuine partnership based on respect, ensuring all activities are culturally appropriate and create tangible benefits for the Quandamooka people.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-5xl mb-4">🌐</div>
+                        <h3 class="text-2xl font-bold text-primary-dark mb-2">Industry & Community</h3>
+                        <p class="text-gray-600">Engaging with <strong>Sporting Bodies</strong> (Volleyball QLD, NFL Australia), <strong>Tourism Orgs</strong> (TEQ), schools, and local businesses is vital for programming, promotion, and ensuring the project is woven into the fabric of the island.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="champions" class="py-20 bg-accent-sand">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">A Constellation of Champions</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">To achieve global reach, we need champions. This is a curated list of potential ambassadors from sport, culture, and business who can lend their credibility and network to the project.</p>
+                </div>
+                <div id="champions-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                    <!-- Champions cards will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+
+        <section id="gameplan" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">The Game Plan</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">A pragmatic, three-phase rollout to build momentum, prove the concept, and scale for long-term success. Each phase has clear goals and de-risks the next stage of investment.</p>
+                </div>
+                <div id="timeline" class="relative">
+                    <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 bg-gray-300"></div>
+                     <!-- Timeline items will be injected here by JS -->
+                </div>
+            </div>
+        </section>
+        
+        <section id="scoreboard" class="py-20 bg-accent-sand">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-dark mb-4">The Scoreboard</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Measuring success through clear economic and community metrics. This project is designed to be a powerful engine for local prosperity.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center mb-16">
+                    <div class="metric-card bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-4xl font-bold text-accent-gold" data-target="50">0</h3>
+                        <p class="text-gray-600 font-semibold">New Jobs (FTE)</p>
+                    </div>
+                     <div class="metric-card bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-4xl font-bold text-accent-gold" data-target="5">0</h3>
+                        <p class="text-gray-600 font-semibold">New Major Events / Year</p>
+                    </div>
+                     <div class="metric-card bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-4xl font-bold text-accent-gold" data-target="2">0</h3>
+                        <p class="text-gray-600 font-semibold">Est. Annual Econ. Impact ($M)</p>
+                    </div>
+                </div>
+                <h3 class="text-2xl font-bold text-center mb-8 text-primary-dark">Phased Funding Targets</h3>
+                <div class="chart-container">
+                    <canvas id="fundingChart"></canvas>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-primary-dark text-white text-center p-6">
+        <p>&copy; 2025 The Amity Project. A strategic framework for a resilient Minjerribah.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sportsData = [
+                { name: 'Beach Volleyball', icon: '🏐', benefit: 'Olympic Pathway | Global Audience' },
+                { name: 'NFL Flag Football', icon: '🏈', benefit: 'High Growth | US Market Link' },
+                { name: 'Beach 5s Rugby', icon: '🏉', benefit: 'Fast Paced | Strong Local Roots' },
+                { name: 'Beach Cricket', icon: '🏏', benefit: 'Community Focus | Broad Appeal' },
+                { name: 'AirBadminton', icon: '🏸', benefit: 'New & Accessible | Asian Market' },
+                { name: 'Beach Soccer', icon: '⚽', benefit: 'Global Sport | Youth Engagement' },
+                { name: 'Sand-based Training', icon: '🏋️', benefit: 'Elite Athlete Camps | Wellness' },
+                { name: 'Community Events', icon: '🎪', benefit: 'Markets | Outdoor Cinema' },
+            ];
+            
+            const sportsGrid = document.getElementById('sports-grid');
+            sportsData.forEach(sport => {
+                const card = document.createElement('div');
+                card.className = 'feature-card bg-white p-6 rounded-lg shadow-md text-center';
+                card.innerHTML = `
+                    <div class="text-6xl mb-4">${sport.icon}</div>
+                    <h4 class="text-xl font-bold text-primary-dark">${sport.name}</h4>
+                    <p class="text-sm text-gray-500">${sport.benefit}</p>
+                `;
+                sportsGrid.appendChild(card);
+            });
+
+            const festivalData = [
+                { name: 'Signature Awards', icon: '🏆', benefit: 'Honoring local stories, cultural vision, and rising stars.' },
+                { name: 'Innovation Hub', icon: '💡', benefit: 'Featuring AI Director Assistants & Smartphone Film categories.' },
+                { name: 'Indigenous Voices', icon: '🗣️', benefit: 'A core mission to platform and preserve Quandamooka narratives.' },
+                { name: 'Community Cinema', icon: '✨', benefit: 'Workshops, Q&As, and screenings under the stars at the sand arena.' },
+            ];
+
+            const festivalGrid = document.getElementById('filmfestival-grid');
+            festivalData.forEach(feature => {
+                const card = document.createElement('div');
+                card.className = 'feature-card bg-accent-sand p-6 rounded-lg shadow-md text-center';
+                card.innerHTML = `
+                    <div class="text-6xl mb-4">${feature.icon}</div>
+                    <h4 class="text-xl font-bold text-primary-dark">${feature.name}</h4>
+                    <p class="text-sm text-gray-500">${feature.benefit}</p>
+                `;
+                festivalGrid.appendChild(card);
+            });
+
+            const aiCrewData = [
+                { name: 'The Director', role: 'Kookaburra', desc: 'The head of operations, guiding the creative process from start to finish.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2016%2C%202025%2C%2002_18_46%20PM.png' },
+                { name: 'The Cinematographer', role: 'Eagle', desc: 'The sharp eye for detail, capturing the big picture with precision.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2016%2C%202025%2C%2002_18_49%20PM.png' },
+                { name: 'The Art Director', role: 'Lorikeet', desc: 'Generates visual concepts, moods, and character designs.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2016%2C%202025%2C%2002_18_52%20PM.png' },
+                { name: 'The Sound Recordist', role: 'Stone-Curlew', desc: 'Captures the sounds of Country and creates the film\'s soundscape.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2016%2C%202025%2C%2002_18_55%20PM.png' },
+                { name: 'The Gaffer', role: 'Goanna', desc: 'The technical problem-solver, managing lighting and on-set logistics.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2016%2C%202025%2C%2002_21_25%20PM.png' },
+                { name: 'The Costume Designer', role: 'Koala', desc: 'Handles all wardrobe and production design using holographic tools.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2017%2C%202025%2C%2007_33_00%20PM.png' },
+                { name: 'The Underwater Unit', role: 'Turtle', desc: 'Specialist agent for capturing the unique marine beauty of Minjerribah.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2017%2C%202025%2C%2007_50_18%20PM.png' },
+                { name: 'The Community Lead', role: 'Dolphin', desc: 'The friendly, community-facing agent for workshops and training.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2017%2C%202025%2C%2007_05_32%20PM.png' },
+                { name: 'The Logistics Manager', role: 'Kangaroo', desc: 'Organizes all digital assets, data, and project files.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2017%2C%202025%2C%2007_52_03%20PM.png' },
+                { name: 'The Core Engine', role: 'Robot & Snake', desc: 'The powerful, adaptable AI model at the heart of the creative ecosystem.', image: 'https://raw.githubusercontent.com/auraofintelligence/amity-point/main/Film_Festival/ChatGPT%20Image%20Jun%2016%2C%202025%2C%2002_19_01%20PM.png' },
+            ];
+
+            const aiCrewGrid = document.getElementById('aicrew-grid');
+            aiCrewData.forEach(crew => {
+                const card = document.createElement('div');
+                card.className = 'feature-card bg-white p-6 rounded-lg shadow-md text-center flex flex-col items-center';
+                card.innerHTML = `
+                    <img src="${crew.image}" alt="Image of ${crew.name}" class="w-full h-48 rounded-lg mb-4 object-contain bg-gray-100" onerror="this.onerror=null;this.src='https://placehold.co/400x400/CCCCCC/FFFFFF?text=Image+Not+Found';">
+                    <h4 class="text-xl font-bold text-primary-dark">${crew.name}</h4>
+                    <p class="text-sm font-semibold text-gray-500 mb-2">(${crew.role})</p>
+                    <p class="text-gray-600 text-sm">${crew.desc}</p>
+                `;
+                aiCrewGrid.appendChild(card);
+            });
+
+
+            const championsData = [
+                { name: 'Taliqua Clancy', image: 'https://placehold.co/400x400/003366/FFFFFF?text=TC' },
+                { name: 'Johnathan Thurston', image: 'https://placehold.co/400x400/003366/FFFFFF?text=JT' },
+                { name: 'Mick Fanning AO', image: 'https://placehold.co/400x400/0055A4/FFFFFF?text=MF' },
+                { name: 'Natalie Cook OAM', image: 'https://placehold.co/400x400/0055A4/FFFFFF?text=NC' },
+                { name: 'Margot Robbie', image: 'https://placehold.co/400x400/ffc107/000000?text=MR' },
+                { name: 'Baz Luhrmann', image: 'https://placehold.co/400x400/ffc107/000000?text=BL' },
+                { name: 'Chris Hemsworth', image: 'https://placehold.co/400x400/0055A4/FFFFFF?text=CH' },
+                { name: 'Ash Barty AC', image: 'https://placehold.co/400x400/003366/FFFFFF?text=AB' },
+            ];
+
+            const championsGrid = document.getElementById('champions-grid');
+            championsData.forEach(champion => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-lg shadow-md overflow-hidden text-center';
+                card.innerHTML = `
+                    <img src="${champion.image}" alt="Image of ${champion.name}" class="w-full h-40 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/400x400/CCCCCC/FFFFFF?text=Image';">
+                    <div class="p-4">
+                        <h4 class="font-bold text-primary-dark">${champion.name}</h4>
+                    </div>
+                `;
+                championsGrid.appendChild(card);
+            });
+
+            const timelineData = [
+                { phase: 1, title: 'Foundation & Quick Wins', duration: 'Months 1-12', goal: 'Secure partnerships, funding, and run a pilot event to prove concept.' },
+                { phase: 2, title: 'Build & Activate', duration: 'Months 13-24', goal: 'Construct core infrastructure and launch regular programming and a full-scale festival.' },
+                { phase: 3, title: 'Scale & Amplify', duration: 'Months 25+', goal: 'Attract major international events, secure long-term sponsorships, and leverage Brisbane 2032 legacy.' },
+            ];
+            
+            const timelineContainer = document.getElementById('timeline');
+            timelineData.forEach((item, index) => {
+                const sideClass = index % 2 === 0 ? 'md:pr-8' : 'md:pl-8 md:text-right';
+                const sideContainerClass = index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto md:items-end';
+                const element = document.createElement('div');
+                element.className = `timeline-item mb-8 flex flex-col items-center md:items-start ${sideContainerClass} w-full md:w-1/2`;
+                element.innerHTML = `
+                    <div class="relative w-full ${sideClass}">
+                        <div class="timeline-dot absolute top-1/2 -translate-y-1/2 w-4 h-4 bg-gray-300 rounded-full transition-all duration-300" style="${index % 2 === 0 ? 'right: -2rem;' : 'left: -2rem;'}"></div>
+                        <div class="timeline-content bg-white p-6 rounded-lg shadow-md border-l-4 border-gray-300 transition-all duration-300">
+                            <p class="text-sm font-semibold text-primary-dark mb-1">${item.title}</p>
+                            <h4 class="text-lg font-bold text-gray-800 mb-2">${item.duration}</h4>
+                            <p class="text-gray-600">${item.goal}</p>
+                        </div>
+                    </div>
+                `;
+                timelineContainer.appendChild(element);
+            });
+            
+            const fundingCtx = document.getElementById('fundingChart').getContext('2d');
+            new Chart(fundingCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Phase 1: Seed', 'Phase 2: Growth', 'Phase 3: Scale'],
+                    datasets: [{
+                        label: 'Funding Target (AUD)',
+                        data: [150000, 750000, 2500000],
+                        backgroundColor: ['rgba(255, 193, 7, 0.6)', 'rgba(0, 85, 164, 0.6)', 'rgba(0, 51, 102, 0.6)'],
+                        borderColor: ['#ffc107', '#0055A4', '#003366'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: { y: { beginAtZero: true, ticks: { callback: (v) => '$' + (v/1000) + 'k' } } },
+                    plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => '$' + c.parsed.y.toLocaleString() } } }
+                }
+            });
+
+            const counters = document.querySelectorAll('.metric-card h3');
+            const speed = 200; 
+
+            const animateCounters = () => {
+                counters.forEach(counter => {
+                    const updateCount = () => {
+                        const target = +counter.getAttribute('data-target');
+                        const count = +counter.innerText;
+                        const inc = target / speed;
+
+                        if (count < target) {
+                            counter.innerText = Math.ceil(count + inc);
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    };
+                    updateCount();
+                });
+            };
+            
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(document.getElementById('scoreboard'));
+
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('#header a.nav-link');
+            
+            function changeActiveLink() {
+                let index = sections.length;
+                while(--index && window.scrollY + 100 < sections[index].offsetTop) {}
+                navLinks.forEach((link) => link.classList.remove('active'));
+                if(navLinks[index]) {
+                   navLinks[index].classList.add('active');
+                }
+            }
+            
+            window.addEventListener('scroll', changeActiveLink);
+            changeActiveLink();
+        });
+    </script>
+
+</body>
+</html>
